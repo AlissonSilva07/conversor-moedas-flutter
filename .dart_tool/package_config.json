@@ -98,6 +98,18 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "ionicons",
+      "rootUri": "file:///Users/liv03/.pub-cache/hosted/pub.dev/ionicons-0.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "ionicons_named",
+      "rootUri": "file:///Users/liv03/.pub-cache/hosted/pub.dev/ionicons_named-1.3.2+6",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "leak_tracker",
       "rootUri": "file:///Users/liv03/.pub-cache/hosted/pub.dev/leak_tracker-11.0.2",
       "packageUri": "lib/",

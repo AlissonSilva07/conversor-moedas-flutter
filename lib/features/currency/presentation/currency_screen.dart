@@ -1,4 +1,6 @@
+import 'package:conversor_moedas/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons_named/ionicons_named.dart';
 
 class CurrencyPage extends StatelessWidget {
   const CurrencyPage({super.key});
@@ -8,7 +10,7 @@ class CurrencyPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,7 +29,7 @@ class CurrencyPage extends StatelessWidget {
                       SizedBox(height: 16),
                       Text(
                         'Converta moedas de maneira fácil e prática.',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.bodyMedium,
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -36,23 +38,98 @@ class CurrencyPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Taxa de câmbio comercial',
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(fontWeight: FontWeight.w700),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            '1 BRL = 0,1586 EUR',
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(fontWeight: FontWeight.w700),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                      SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Taxa de câmbio comercial',
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  '1 BRL = 0,1586 EUR',
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Quantia',
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(height: 8),
+                                Column(
+                                  children: [
+                                    TextField(decoration: InputDecoration()),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                100.0,
+                              ), // Adjust radius as needed
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                color: accentColor,
+                                child: Icon(
+                                  ionicons['swap_vertical_outline'],
+                                  color: primaryLight,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Converter para',
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(height: 8),
+                                Column(
+                                  children: [
+                                    TextField(decoration: InputDecoration()),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: Theme.of(context).elevatedButtonTheme.style,
+                                onPressed: (){}, 
+                                child: Text('Converter')
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton(
+                                style: Theme.of(context).outlinedButtonTheme.style,
+                                onPressed: (){}, 
+                                child: Text('Resetar')
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -63,7 +140,7 @@ class CurrencyPage extends StatelessWidget {
                 children: [
                   Text(
                     'Dados obtidos da API Frankfurter',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.center,
@@ -71,7 +148,7 @@ class CurrencyPage extends StatelessWidget {
                   SizedBox(height: 8),
                   Text(
                     'frankfurter.dev',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.center,
