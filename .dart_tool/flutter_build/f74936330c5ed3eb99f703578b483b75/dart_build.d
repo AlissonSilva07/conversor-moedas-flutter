@@ -1,0 +1,1 @@
+ /Users/liv03/Documents/Pessoal/conversor-moedas-flutter/.dart_tool/flutter_build/f74936330c5ed3eb99f703578b483b75/dart_build_result.json: 
