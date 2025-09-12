@@ -57,6 +57,46 @@ final lightThemeData = ThemeData(
       ),
     ),
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: primaryLight, // Background color of the button
+      foregroundColor: primaryDark, // Text and icon color
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ), // Padding around the child
+      shape: RoundedRectangleBorder(
+        // Shape of the button
+        borderRadius: BorderRadius.circular(8),
+      ),
+      textStyle: TextStyle(
+        fontFamily:
+            GoogleFonts.inter().fontFamily, // Style for the button's text
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: primaryDark, // Background color of the button
+      foregroundColor: primaryLight, // Text and icon color
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ), // Padding around the child
+      shape: RoundedRectangleBorder(
+        // Shape of the button
+        borderRadius: BorderRadius.circular(8),
+      ),
+      textStyle: TextStyle(
+        fontFamily:
+            GoogleFonts.inter().fontFamily, // Style for the button's text
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ),
   appBarTheme: AppBarThemeData(backgroundColor: primaryDark),
   navigationBarTheme: NavigationBarThemeData(backgroundColor: primaryDark),
 );
