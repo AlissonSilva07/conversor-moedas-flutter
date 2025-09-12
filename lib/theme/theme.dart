@@ -97,6 +97,18 @@ final lightThemeData = ThemeData(
       ),
     ),
   ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: primaryLight, // Text color
+      backgroundColor: Colors.transparent, // Background color
+      padding: EdgeInsets.symmetric(horizontal: 16), // Internal padding
+      shape: RoundedRectangleBorder(
+        // Button shape
+        borderRadius: BorderRadius.circular(8),
+      ),
+      elevation: 5, // Shadow elevation
+    ),
+  ),
   appBarTheme: AppBarThemeData(backgroundColor: primaryDark),
   navigationBarTheme: NavigationBarThemeData(backgroundColor: primaryDark),
 );
@@ -168,6 +180,18 @@ final darkThemeData = ThemeData(
         fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
+    ),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: primaryDark, // Text color
+      backgroundColor: Colors.transparent, // Background color
+      padding: EdgeInsets.symmetric(horizontal: 16), // Internal padding
+      shape: RoundedRectangleBorder(
+        // Button shape
+        borderRadius: BorderRadius.circular(8),
+      ),
+      elevation: 5, // Shadow elevation
     ),
   ),
   appBarTheme: AppBarThemeData(backgroundColor: primaryLight),

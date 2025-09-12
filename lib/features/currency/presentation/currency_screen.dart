@@ -105,7 +105,32 @@ class CurrencyPage extends StatelessWidget {
                                 SizedBox(height: 8),
                                 Column(
                                   children: [
-                                    TextField(decoration: InputDecoration()),
+                                    TextField(
+                                      decoration: InputDecoration(
+                                        suffixIcon: TextButton(
+                                          style: Theme.of(
+                                            context,
+                                          ).textButtonTheme.style,
+                                          onPressed: () {},
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                'BRL',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge
+                                                    ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                              ),
+                                              Icon(ionicons['chevron_down']),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -114,20 +139,24 @@ class CurrencyPage extends StatelessWidget {
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                style: Theme.of(context).elevatedButtonTheme.style,
-                                onPressed: (){}, 
-                                child: Text('Converter')
+                                style: Theme.of(
+                                  context,
+                                ).elevatedButtonTheme.style,
+                                onPressed: () {},
+                                child: Text('Converter'),
                               ),
                             ),
                             SizedBox(height: 16),
                             SizedBox(
                               width: double.infinity,
                               child: OutlinedButton(
-                                style: Theme.of(context).outlinedButtonTheme.style,
-                                onPressed: (){}, 
-                                child: Text('Resetar')
+                                style: Theme.of(
+                                  context,
+                                ).outlinedButtonTheme.style,
+                                onPressed: () {},
+                                child: Text('Resetar'),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
