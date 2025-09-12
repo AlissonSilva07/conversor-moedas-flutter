@@ -2,6 +2,42 @@ import 'package:conversor_moedas/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+final TextTheme lightTextTheme = GoogleFonts.interTextTheme(
+  const TextTheme(
+    headlineLarge: TextStyle(
+      fontSize: 48.0,
+      fontWeight: FontWeight.bold,
+      color: primaryDark,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.0,
+      color: primaryDark,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12.0,
+      color: primaryDark,
+    )
+  ),
+);
+
+final TextTheme darkTextTheme = GoogleFonts.interTextTheme(
+  const TextTheme(
+    headlineLarge: TextStyle(
+      fontSize: 48.0,
+      color: primaryDark,
+      fontWeight: FontWeight.w700
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.0,
+      color: primaryDark,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12.0,
+      color: primaryDark,
+    )
+  ),
+);
+
 final lightThemeData = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
@@ -9,7 +45,13 @@ final lightThemeData = ThemeData(
     seedColor: primaryDark,
     brightness: Brightness.light,
   ),
-  textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme),
+  textTheme: lightTextTheme,
+  appBarTheme: AppBarThemeData(
+    backgroundColor: primaryDark
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: primaryDark
+  )
 );
 
 final darkThemeData = ThemeData(
@@ -19,5 +61,11 @@ final darkThemeData = ThemeData(
     seedColor: primaryLight,
     brightness: Brightness.dark,
   ),
-  textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+  textTheme: darkTextTheme,
+  appBarTheme: AppBarThemeData(
+    backgroundColor: primaryLight,
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: primaryLight,
+  )
 );
