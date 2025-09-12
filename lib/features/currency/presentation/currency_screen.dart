@@ -5,6 +5,69 @@ import 'package:ionicons_named/ionicons_named.dart';
 class CurrencyPage extends StatelessWidget {
   const CurrencyPage({super.key});
 
+  void _showMyBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 500, // Customize the height as needed
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Selecionar Moeda',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Add your button press logic here
+                          print('Button tapped!');
+                        },
+                        child: Container(
+                          height: 36,
+                          width: 36,
+                          decoration: BoxDecoration(
+                            color:
+                                accentColor, // Your button's background color
+                            shape:
+                                BoxShape.circle, // Makes the container a circle
+                          ),
+                          child: Icon(
+                            ionicons['close_outline'],
+                            color: primaryLight, // Your icon
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Column()
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      child: const Text('Close'),
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Dismiss the bottom sheet
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +174,9 @@ class CurrencyPage extends StatelessWidget {
                                           style: Theme.of(
                                             context,
                                           ).textButtonTheme.style,
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            _showMyBottomSheet(context);
+                                          },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [

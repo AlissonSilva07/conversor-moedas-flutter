@@ -9,6 +9,11 @@ final TextTheme lightTextTheme = GoogleFonts.interTextTheme(
       color: primaryLight,
       fontWeight: FontWeight.w700,
     ),
+    titleLarge: TextStyle(
+      fontSize: 24.0,
+      color: primaryLight,
+      fontWeight: FontWeight.w700,
+    ),
     bodyLarge: TextStyle(fontSize: 16.0, color: primaryLight),
     bodySmall: TextStyle(fontSize: 12.0, color: primaryLight),
     bodyMedium: TextStyle(fontSize: 16.0, color: primaryLight),
@@ -19,6 +24,11 @@ final TextTheme darkTextTheme = GoogleFonts.interTextTheme(
   const TextTheme(
     headlineLarge: TextStyle(
       fontSize: 48.0,
+      color: primaryDark,
+      fontWeight: FontWeight.w700,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 24.0,
       color: primaryDark,
       fontWeight: FontWeight.w700,
     ),
