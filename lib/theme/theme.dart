@@ -37,7 +37,7 @@ final lightThemeData = ThemeData(
   ),
   textTheme: lightTextTheme,
   inputDecorationTheme: InputDecorationTheme(
-    contentPadding: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+    contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(8)),
       borderSide: BorderSide(
@@ -70,7 +70,7 @@ final darkThemeData = ThemeData(
   ),
   textTheme: darkTextTheme,
   inputDecorationTheme: InputDecorationTheme(
-    contentPadding: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+    contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(8)),
       borderSide: BorderSide(
@@ -95,8 +95,8 @@ final darkThemeData = ThemeData(
       backgroundColor: primaryDark, // Background color of the button
       foregroundColor: primaryLight, // Text and icon color
       padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 16,
+        horizontal: 16,
+        vertical: 8,
       ), // Padding around the child
       shape: RoundedRectangleBorder(
         // Shape of the button
@@ -115,8 +115,8 @@ final darkThemeData = ThemeData(
       backgroundColor: primaryLight, // Background color of the button
       foregroundColor: primaryDark, // Text and icon color
       padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 16,
+        horizontal: 16,
+        vertical: 8,
       ), // Padding around the child
       shape: RoundedRectangleBorder(
         // Shape of the button
