@@ -21,6 +21,7 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     try {
       final Map<String, dynamic> fetchedData = await _repository
           .fetchCurrencies();
+
       final List<Currency> list = fetchedData.entries.map((entry) {
         return Currency(code: entry.key, name: entry.value);
       }).toList();
@@ -32,11 +33,14 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
       final String defaultTo = list
           .firstWhere((c) => c.code == 'EUR', orElse: () => list.last)
           .code;
+
+      final initialConversion = await _repository.performConversion(defaultFrom, defaultTo);
+
       emit(
         CurrencyLoaded(
           currencies: list,
           valueFrom: 1,
-          valueTo: 0,
+          valueTo: initialConversion.rates.entries.map((entry) => entry.value).first,
           currencyFrom: defaultFrom,
           currencyTo: defaultTo,
         ),
