@@ -24,7 +24,7 @@ class CurrencyPage extends StatelessWidget {
           if (state is CurrencyLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is CurrencyLoaded) {
-            return _buildUi(context, state.currencies);
+            return _buildUi(context, state);
           } else {
             return const Center(child: Text('Something went wrong!'));
           }
@@ -34,91 +34,137 @@ class CurrencyPage extends StatelessWidget {
   }
 }
 
-void _showMyBottomSheet(BuildContext context, List<Currency> currencies) {
+void _showMyBottomSheet(
+  BuildContext context,
+  CurrencyState state, {
+  required String inputType,
+}) {
+  final loadedState = state as CurrencyLoaded;
+  final List<Currency> currencies = loadedState.currencies;
+  final String chosenFrom = loadedState.currencyFrom;
+  final String chosenTo = loadedState.currencyTo;
+
   showModalBottomSheet(
     context: context,
-    builder: (BuildContext context) {
-      return SizedBox(
-        height: 500, // Customize the height as needed
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Selecionar Moeda',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Add your button press logic here
-                        Navigator.of(context).pop();
-                      },
-                      child: Container(
-                        height: 36,
-                        width: 36,
-                        decoration: BoxDecoration(
-                          color: accentColor, // Your button's background color
-                          shape:
-                              BoxShape.circle, // Makes the container a circle
-                        ),
-                        child: Icon(
-                          ionicons['close_outline'],
-                          color: primaryLight, // Your icon
+    builder: (BuildContext modalContext) {
+      return BlocProvider.value(
+        value: BlocProvider.of<CurrencyBloc>(context),
+        child: SizedBox(
+          height: 500, // Customize the height as needed
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        inputType == 'from' ? 'Moeda origem' : 'Moeda alvo',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Add your button press logic here
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          height: 36,
+                          width: 36,
+                          decoration: BoxDecoration(
+                            color:
+                                accentColor, // Your button's background color
+                            shape:
+                                BoxShape.circle, // Makes the container a circle
+                          ),
+                          child: Icon(
+                            ionicons['close_outline'],
+                            color: primaryLight, // Your icon
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  flex: 1,
-                  child: ListView.builder(
-                    itemCount: currencies.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final current = currencies[index];
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsetsGeometry.symmetric(
-                            vertical: 8,
-                            horizontal: 0,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                ionicons['flag_outline'],
-                                color: primaryLight,
-                              ),
-                              SizedBox(width: 16,),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    current.name,
-                                    style: Theme.of(context).textTheme.bodyLarge
-                                      ?.copyWith(fontWeight: FontWeight.w700),
-                                  ),
-                                  Text(
-                                    current.code,
-                                    style: Theme.of(context).textTheme.bodySmall
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                    ],
                   ),
-                ),
-              ],
+                  Expanded(
+                    flex: 1,
+                    child: ListView.builder(
+                      itemCount: currencies.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final current = currencies[index];
+                        return GestureDetector(
+                          onTap: () {
+                            final currencyBloc = BlocProvider.of<CurrencyBloc>(
+                              context,
+                            );
+                            currencyBloc.add(
+                              UpdateCurrency(
+                                selectedCode: current.code,
+                                inputType: inputType,
+                              ),
+                            );
+                            Navigator.of(context).pop();
+                          },
+                          child: Padding(
+                            padding: EdgeInsetsGeometry.symmetric(
+                              vertical: 8,
+                              horizontal: 0,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  ionicons['flag_outline'],
+                                  color: primaryLight,
+                                ),
+                                SizedBox(width: 16),
+                                Expanded(
+                                  flex: 1,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        current.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                      ),
+                                      Text(
+                                        current.code,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodySmall,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                if (inputType == 'from' &&
+                                    chosenFrom == current.code)
+                                  Icon(
+                                    ionicons['checkmark_circle_outline'],
+                                    color: primaryLight,
+                                  ),
+                                if (inputType == 'to' &&
+                                    chosenTo == current.code)
+                                  Icon(
+                                    ionicons['checkmark_circle_outline'],
+                                    color: primaryLight,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -127,7 +173,10 @@ void _showMyBottomSheet(BuildContext context, List<Currency> currencies) {
   );
 }
 
-Widget _buildUi(BuildContext context, List<Currency> currencies) {
+Widget _buildUi(BuildContext context, CurrencyState state) {
+  final loadedState = state as CurrencyLoaded;
+  final TextEditingController amountController = TextEditingController();
+
   return SafeArea(
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
@@ -193,7 +242,39 @@ Widget _buildUi(BuildContext context, List<Currency> currencies) {
                             SizedBox(height: 8),
                             Column(
                               children: [
-                                TextField(decoration: InputDecoration()),
+                                TextField(
+                                  controller: amountController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    suffixIcon: TextButton(
+                                      style: Theme.of(
+                                        context,
+                                      ).textButtonTheme.style,
+                                      onPressed: () {
+                                        _showMyBottomSheet(
+                                          context,
+                                          loadedState,
+                                          inputType: 'from',
+                                        );
+                                      },
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            state.currencyFrom,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                          ),
+                                          Icon(ionicons['chevron_down']),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -226,19 +307,24 @@ Widget _buildUi(BuildContext context, List<Currency> currencies) {
                             Column(
                               children: [
                                 TextField(
+                                  readOnly: true,
                                   decoration: InputDecoration(
                                     suffixIcon: TextButton(
                                       style: Theme.of(
                                         context,
                                       ).textButtonTheme.style,
                                       onPressed: () {
-                                        _showMyBottomSheet(context, currencies);
+                                        _showMyBottomSheet(
+                                          context,
+                                          loadedState,
+                                          inputType: 'to',
+                                        );
                                       },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Text(
-                                            'BRL',
+                                            state.currencyTo,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge
