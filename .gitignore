@@ -1,0 +1,53 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Visual Studio Code related
+.classpath
+.project
+.settings/
+.vscode/*
+
+# Generated files and directories
+/build
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.dart_tool/
+/ios/.symlinks
+/android/.gradle
+/android/local.properties
+/android/key.properties
+/android/gradlew
+/android/gradlew.bat
+/android/gradle/wrapper/gradle-wrapper.jar
+/ios/Flutter/Generated.xcconfig
+/ios/Runner.xcworkspace/xcuserdata/
+/ios/Pods/
+/ios/.generated_config.xcfilelist
+/ios/.generated_xcconfig
+
+# Flutter specific
+/pubspec.lock # Generally, this is not ignored, but can be if you manage dependencies differently.
+# You might want to ignore certain platform-specific generated files if they cause conflicts
+# in a multi-developer environment, or if you manage them separately.
+
+# Secrets and sensitive files
+# Example: If you use a .env file for environment variables
+.env
+# Or if you have specific Firebase configuration files you don't want to commit
+# google-services.json
+# GoogleService-Info.plist
